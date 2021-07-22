@@ -2,10 +2,10 @@ const {
   checkExistingUser,
   checkExistingCocktail,
   findMany,
-  // findOne,
-  // create,
-  // update,
-  // remove,
+  findOne,
+  create,
+  update,
+  remove,
 } = require('./cocktail.model');
 
 /*
@@ -33,7 +33,6 @@ const getAllCocktail = async (req, res) => {
   }
 };
 
-/*
 // Retrieve one Cocktail
 const getOneCocktail = async (req, res) => {
   try {
@@ -41,7 +40,7 @@ const getOneCocktail = async (req, res) => {
     if (existingUser.length === 0) {
       res.status(404).send(`This user doesn't existe with this id.`);
     } else {
-      const rawData = await findOne(req.params.userId);
+      const rawData = await findOne(req.params.cocktailId, req.params.id);
       res.json(rawData);
     }
   } catch (err) {
@@ -52,7 +51,7 @@ const getOneCocktail = async (req, res) => {
 // Create a new Cocktail
 const createCocktail = async (req, res) => {
   try {
-    const existingCocktail = await checkExistingCocktail(req.body.cocktail);
+    const existingCocktail = await checkExistingCocktail(req.params.cocktailId);
     if (existingCocktail.length > 0) {
       res.status(409).send(`This Cocktail existe already.`);
     } else {
@@ -94,11 +93,11 @@ const deleteCocktail = async (req, res) => {
     res.status(500).send(err);
   }
 };
-*/
+
 module.exports = {
   getAllCocktail,
-  // getOneCocktail,
-  // createCocktail,
-  // updateCocktail,
-  // deleteCocktail,
+  getOneCocktail,
+  createCocktail,
+  updateCocktail,
+  deleteCocktail,
 };

@@ -1,5 +1,5 @@
 const db = require('../../dbConfig');
-/*
+
 // function to check if user already exists
 const checkExistingUser = async (userId) => {
   try {
@@ -10,34 +10,28 @@ const checkExistingUser = async (userId) => {
   }
 };
 
-
 // function to check if email already exists
 const checkExistingEmail = async (email) => {
   try {
-    const result = await db.query(
-      'SELECT email FROM `user` WHERE email = ?',
-      email
-    );
+    const result = await db.query('SELECT email FROM `user` WHERE email = ?', [
+      email,
+    ]);
     return result[0];
   } catch (err) {
     throw new Error(err);
   }
 };
-*/
 
 // function to retrieve all users
 const findMany = async () => {
   try {
-    console.log('logos');
     const users = await db.query('SELECT * FROM `user`');
-    console.log(users);
     return users;
   } catch (err) {
     throw new Error(err);
   }
 };
 
-/*
 // function to retrieve one user
 const findOne = async (userId) => {
   try {
@@ -46,7 +40,6 @@ const findOne = async (userId) => {
     throw new Error(err);
   }
 };
-
 
 // function to create a new user
 const create = async (newUser) => {
@@ -82,13 +75,12 @@ const remove = async (userId) => {
   }
 };
 
-*/
 module.exports = {
-  // checkExistingUser,
-  // checkExistingEmail,
+  checkExistingUser,
+  checkExistingEmail,
   findMany,
-  // findOne,
-  // create,
-  // update,
-  // remove,
+  findOne,
+  create,
+  update,
+  remove,
 };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { axios } from 'axios';
+import axios from 'axios';
 import {
   Dimensions,
   Image,
@@ -12,7 +12,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import utensilios from '../assets/utensilios.jpg';
+import jackers from '../assets/jackers.jpg';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 100,
     left: 0,
-    right: 250,
+    right: 10,
     bottom: 0,
     justifyContent: 'center',
     alignItems: 'center',
@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
   title: {
     color: '#FFB53C',
     fontSize: 20,
+    fontWeight: 'bold',
   },
   header2: {
     display: 'flex',
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
-    alignContent: 'center',
+    // alignContent: 'center',
     alignItems: 'center',
     marginTop: 5,
     height: '95%',
@@ -135,7 +136,7 @@ export default function MyCocktails() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3000/users/cocktails/')
+      .get('http://localhost:3000/api/users/1/cocktails/')
       .then((res) => res.data)
       .then((data) => {
         setMyCocktails(data);
@@ -147,13 +148,13 @@ export default function MyCocktails() {
     <ScrollView>
       <SafeAreaView style={styles.container}>
         <View style={styles.header}>
-          <ImageBackground source={utensilios} style={{ width: 600, height: 150 }}>
+          <ImageBackground source={jackers} style={{ width: 600, height: 150 }}>
             <View style={styles.headerText}>
-              <Text style={styles.title}>Bring your perfered Cocktail to Home </Text>
+              <Text style={styles.title}>Create your owns ideas and share them </Text>
             </View>
           </ImageBackground>
           <View style={styles.header2}>
-            <View style={styles.tab1}>
+            <View style={styles.tab2}>
               <TouchableOpacity
                 onPress={() => (goToAllCocktails)}
                 title="AllCocktails"
@@ -161,7 +162,7 @@ export default function MyCocktails() {
                 <Text style={styles.titleTabSelect}> AllCocktails</Text>
               </TouchableOpacity>
             </View>
-            <View style={styles.tab2}>
+            <View style={styles.tab1}>
               <TouchableOpacity
                 onPress={() => (goToMyCocktails)}
                 title="MyCocktails"
@@ -182,7 +183,7 @@ export default function MyCocktails() {
         <View style={styles.body}>
           <View>
             <View style={styles.bodyIntro}>
-              <Text style={styles.text}> All cocktails in the World in your pocket</Text>
+              <Text style={styles.text}> All your cocktails in one page </Text>
               <View style={styles.sizeInput}>
                 <TextInput
                   mode="outlined"
@@ -192,6 +193,11 @@ export default function MyCocktails() {
                   style={styles.input}
                   placeholder="Cocktail, alcohol, glass,.."
                 />
+              </View>
+            </View>
+            <View style={styles.bodyCards}>
+              <View style={styles.cardsCocktails}>
+
               </View>
             </View>
             <View style={styles.bodyCards}>

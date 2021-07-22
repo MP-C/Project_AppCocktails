@@ -11,11 +11,11 @@ const checkExistingUser = async (userId) => {
 };
 
 // function to check if cocktail already exists
-const checkExistingCocktail = async (cocktailName) => {
+const checkExistingCocktail = async (cocktailId) => {
   try {
     const result = await db.query(
-      'SELECT cocktailName FROM cocktail WHERE cocktailName = ?',
-      cocktailName
+      'SELECT id FROM `cocktail` WHERE cocktail.id=?',
+      [cocktailId]
     );
     return result[0];
   } catch (err) {
@@ -26,16 +26,21 @@ const checkExistingCocktail = async (cocktailName) => {
 // function to retrieve all cocktails
 const findMany = async () => {
   try {
-    return await db.query('SELECT * FROM `cocktail`');
+    const result = await db.query('SELECT * FROM cocktail');
+    return result[0];
   } catch (err) {
     throw new Error(err);
   }
 };
-/*
+
 // function to retrieve one cocktail
 const findOne = async (cocktailId) => {
   try {
-    return await db.query('SELECT * FROM cocktail WHERE id = ?', [cocktailId]);
+    const result = await db.query(
+      'SELECT * FROM cocktail WHERE cocktail.id = ?',
+      [cocktailId]
+    );
+    return result[0];
   } catch (err) {
     throw new Error(err);
   }
@@ -44,6 +49,7 @@ const findOne = async (cocktailId) => {
 // function to create a new cocktail
 const create = async (newCocktail) => {
   const {
+    userId,
     cocktailName,
     glass,
     isAlcoholic,
@@ -56,8 +62,9 @@ const create = async (newCocktail) => {
 
   try {
     const [insertCocktail] = await db.query(
-      'INSERT INTO cocktail (cocktailName, glass, isAlcoholic, description, ingredient, recipe, vote, tags) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+      'INSERT INTO cocktail (userId, cocktailName, glass, isAlcoholic, description, ingredient, recipe, vote, tags) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
       [
+        userId,
         cocktailName,
         glass,
         isAlcoholic,
@@ -94,13 +101,14 @@ const remove = async (cocktailId) => {
   } catch (err) {
     throw new Error(err);
   }
-};*/
+};
+
 module.exports = {
   checkExistingUser,
   checkExistingCocktail,
   findMany,
-  // findOne,
-  // create,
-  // update,
-  // remove,
+  findOne,
+  create,
+  update,
+  remove,
 };

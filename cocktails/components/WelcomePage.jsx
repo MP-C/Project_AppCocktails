@@ -46,9 +46,7 @@ export default function FirstPage() {
               <Text style={styles.title}>Bring your dream bar to home (NOM)</Text>
             </View>
             <View style={styles.body}>
-              <StatusBar />
-              <Text>List des écoles : </Text>
-              {schools.map((school) => <Text>{school}</Text>)}
+
             </View>
           </View>
         </SafeAreaView>

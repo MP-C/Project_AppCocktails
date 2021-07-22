@@ -223,6 +223,6 @@ export default function AllCocktails() {
           </View>
         </View>
       </SafeAreaView>
-    </ScrollView >
+    </ScrollView>
   );
 }

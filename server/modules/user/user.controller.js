@@ -1,19 +1,18 @@
 // const Joi = require('joi');
 
 const {
-  // checkExistingUser,
-  // checkExistingEmail,
+  checkExistingUser,
+  checkExistingEmail,
   findMany,
-  // findOne,
-  // create,
-  // update,
-  // remove,
+  findOne,
+  create,
+  update,
+  remove,
 } = require('./user.model');
 
 // Retrieve all user
 const getAllUsers = async (req, res) => {
   try {
-    console.log('test');
     const rawData = await findMany();
     return res.json(rawData[0]);
   } catch (err) {
@@ -21,7 +20,6 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-/*
 /*
 // Validation of fields to create a new user or to update user's datas
 const validate = (data) =>
@@ -32,23 +30,22 @@ const validate = (data) =>
     firstname: Joi.string().alphanum(),
     birthday: Joi.date().raw().required(),
   }).validate(data, { abortEarly: false }).error;
-
+*/
 
 // Retrieve one user
 const getOneUser = async (req, res) => {
   try {
     const existingUser = await checkExistingUser(req.params.userId);
     if (existingUser.length === 0) {
-      res.status(404).send(`This user doesn't  existe with this id.`);
+      res.status(404).send(`This user doesn't existe with this id.`);
     } else {
       const rawData = await findOne(req.params.userId);
-      res.json(rawData);
+      res.json(rawData[0]);
     }
   } catch (err) {
     res.status(500).send(err);
   }
 };
-
 
 // Create a new user
 const createUser = async (req, res) => {
@@ -57,13 +54,8 @@ const createUser = async (req, res) => {
     if (existingEmail.length > 0) {
       res.status(409).send(`This email or password is already.`);
     } else {
-      const error = validate(req.body);
-      if (error) {
-        res.status(422).json({ validationErrors: error.details });
-      } else {
-        const rawData = await create(req.body);
-        res.status(201).json(rawData);
-      }
+      const rawData = await create(req.body);
+      res.status(201).json(rawData);
     }
   } catch (err) {
     // console.log(err);
@@ -78,13 +70,8 @@ const updateUser = async (req, res) => {
     if (existingUser.length === 0) {
       res.status(404).send(`This user doesn't existe with this id.`);
     } else {
-      const error = validate(req.body);
-      if (error) {
-        res.status(422).json({ validationErrors: error.details });
-      } else {
-        const rawData = await update(req.params.userId, req.body);
-        res.status(200).json(rawData);
-      }
+      const rawData = await update(req.params.userId, req.body);
+      res.status(200).json(rawData);
     }
   } catch (err) {
     res.status(500).send(err);
@@ -106,11 +93,11 @@ const deleteUser = async (req, res) => {
     res.status(500).send(err);
   }
 };
-*/
+
 module.exports = {
   getAllUsers,
-  // getOneUser,
-  // createUser,
-  // updateUser,
-  // deleteUser,
+  getOneUser,
+  createUser,
+  updateUser,
+  deleteUser,
 };
