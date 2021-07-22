@@ -1,0 +1,1 @@
+Here you can find a srcipt to MySql and some run tests
