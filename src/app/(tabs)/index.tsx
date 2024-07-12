@@ -10,17 +10,6 @@ export default function About() {
             paddingTop: headerHeight
             */
         }}>
-            <Stack>
-                <Stack.Screen 
-                    name='Home'
-                    options={{
-                    headerSearchBarOptions:{
-                        placeholder:'Look for events',
-                        hideWhenScrolling: false,
-                    }
-                }}/>
-            </Stack>
-            
             <ScrollView contentInsetAdjustmentBehavior ="automatic">
                 <Text>1111111111111</Text>
                 <Text>2222222222222222</Text>
