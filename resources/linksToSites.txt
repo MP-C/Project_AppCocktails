@@ -1,7 +1,0 @@
-Figma
-
-Jira
-https://mp-c.atlassian.net/jira/software/projects/COCKTAILS/boards/4/backlog?selectedIssue=COCKTAILS-2
-
-DB
-https://dbdiagram.io/d/60e9b9a27e498c3bb3f0998a
