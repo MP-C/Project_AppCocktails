@@ -1,10 +1,14 @@
-import { Tabs } from "expo-router";
+import { Stack, Tabs } from "expo-router";
 import { FontAwesome } from '@expo/vector-icons';
 import { TabBarIcon } from '../../../src/components/TabBarIconDefault';
+import { View } from "react-native";
 
 export default function TabsLayout() {
     return(
-        <Tabs screenOptions={{ tabBarActiveTintColor: 'black', tabBarShowLabel: false}}>
+        <Tabs screenOptions={{
+            tabBarActiveTintColor: 'black',
+            tabBarShowLabel: false,
+         }}>
             <Tabs.Screen name="index"
                 options={{
                     headerTitle: 'Home',
@@ -30,6 +34,5 @@ export default function TabsLayout() {
             )
         }} />
     </Tabs>
-
     )
 }
