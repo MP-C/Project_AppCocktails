@@ -1,7 +1,9 @@
 import { Stack } from "expo-router";
 
 const signIn = true;
-/*const signIn = false; */
+/*
+const signIn = false;
+*/
 
 export default function RootLayout(){
     return(
@@ -11,8 +13,8 @@ export default function RootLayout(){
             headerBlurEffect: 'regular',
             headerTransparent: true,
             headerShown:false,
-            headerShadowVisible: false,
             /*
+            headerShadowVisible: false,
             (<Stack/>
             headerTitle:'Home'
             headerLargeTitle: true,

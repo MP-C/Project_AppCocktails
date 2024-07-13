@@ -1,14 +1,13 @@
 import React from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
-
 import { View, Text, StyleSheet } from 'react-native';
 
-const EventsCard = ({imoticon, title, description }) => {
+const EventsCard = ({imoticon, color, title, description }) => {
     return (
         <View style={styles.card}>
             <View style={styles.container}>
                 <View style={styles.imageCard}>
-                    <MaterialIcons name={imoticon} size={40} color="black" />
+                    <MaterialIcons name={imoticon} size={40} color={color} />
                 </View>
                 <View style={styles.textCard}>
                     <Text style={styles.title}>{title}</Text>
@@ -39,8 +38,8 @@ const styles = StyleSheet.create({
     },
     textCard:{
         marginLeft: 15,
-        flex:1,
-        flexWrap: 'wrap'
+        marginBottom: 5,
+        flex:1
     },
     title: {
         fontSize: 18,
